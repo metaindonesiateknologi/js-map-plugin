@@ -15,7 +15,8 @@ Then, import and use the package as you would with any other Node.js module:
 ```sh
 const wasm = require('js-map-plugin');
 
-await wasm.init('your-registered-appid', 'your-registered-active-token');
+// init the plugin
+await wasm.init('your-registered-active-token');
 
 // searching address and the coordinates from string
 const address_location = await wasm.search_address_by_name("tugu jogja");
