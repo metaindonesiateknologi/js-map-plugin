@@ -1,0 +1,11 @@
+{
+  "name": "mit_map_plugin",
+  "version": "1.0.0",
+  "files": [
+    "mit_map_plugin_bg.wasm",
+    "mit_map_plugin.js",
+    "mit_map_plugin.d.ts"
+  ],
+  "main": "mit_map_plugin.js",
+  "types": "mit_map_plugin.d.ts"
+}
