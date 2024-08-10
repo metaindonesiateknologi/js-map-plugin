@@ -9,7 +9,7 @@ cachedTextDecoder.decode();
 
 let cachedUint8Memory0 = null;
 
-let appid = "";
+let appid = window.location.hostname;
 let token = "";
 
 function getUint8Memory0() {
@@ -222,12 +222,10 @@ function __wbg_adapter_24(arg0, arg1, arg2) {
 }
 
 /**
-* @param {string} appidstr
 * @param {string} tokenstr
 * @returns {Promise<any>}
 */
-module.exports.init = function(appidstr, tokenstr) {
-    appid = appidstr;
+module.exports.init = function(tokenstr) {
     token = tokenstr;
 };
 /**
