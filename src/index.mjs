@@ -25,15 +25,27 @@ export async function init(token) {
 
 export async function search_address_by_name(name) {
     await ensureWasmInitialized();
-    return await wasm.search_address_by_name(name);
+    try {
+        return await wasm.search_address_by_name(name);   
+    } catch (error) {
+        return "";
+    }
 }
 
 export async function search_address_by_coord(lat, lon) {
     await ensureWasmInitialized();
-    return await wasm.search_address_by_coord(lat, lon);
+    try {
+        return await wasm.search_address_by_coord(lat, lon);   
+    } catch (error) {
+        return [];
+    }
 }
 
 export async function map_route(start, start_lat, start_lon, dest, dest_lat, dest_lon) {
     await ensureWasmInitialized();
-    return await wasm.map_route({ start, start_lat, start_lon, dest, dest_lat, dest_lon });
+    try {
+        return await wasm.map_route({ start, start_lat, start_lon, dest, dest_lat, dest_lon });   
+    } catch (error) {
+        return [];
+    }
 }

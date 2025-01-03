@@ -537,7 +537,7 @@ export function __wbg_static_accessor_GLOBAL_THIS_1a6eb482d12c9bfb() {
 };
 
 export function __wbg_static_accessor_LOCATION_46782728fb36c611() {
-    const ret = window.location;
+    const ret = typeof window !== "undefined" ? window.location : "";
     return addHeapObject(ret);
 };
 

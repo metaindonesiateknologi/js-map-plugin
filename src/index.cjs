@@ -36,7 +36,11 @@ async function search_address_by_name(name) {
     if (!wasm?.search_address_by_name) {
         throw new Error("WASM module does not expose a search_address_by_name function.");
     }
-    return await wasm.search_address_by_name(name);
+    try {
+        return await wasm.search_address_by_name(name);    
+    } catch (error) {
+        return "";
+    }
 }
 
 // Search address by coordinates
@@ -45,7 +49,11 @@ async function search_address_by_coord(lat, lon) {
     if (!wasm?.search_address_by_coord) {
         throw new Error("WASM module does not expose a search_address_by_coord function.");
     }
-    return await wasm.search_address_by_coord(lat, lon);
+    try {
+        return await wasm.search_address_by_coord(lat, lon);   
+    } catch (error) {
+        return [];
+    }
 }
 
 // Map route between two points
@@ -54,7 +62,11 @@ async function map_route(start, start_lat, start_lon, dest, dest_lat, dest_lon) 
     if (!wasm?.map_route) {
         throw new Error("WASM module does not expose a map_route function.");
     }
-    return await wasm.map_route({ start, start_lat, start_lon, dest, dest_lat, dest_lon });
+    try {
+        return await wasm.map_route({ start, start_lat, start_lon, dest, dest_lat, dest_lon });   
+    } catch (error) {
+        return [];
+    }
 }
 
 // Export functions for CommonJS

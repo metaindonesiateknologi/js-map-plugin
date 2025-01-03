@@ -76,7 +76,7 @@ function passStringToWasm0(arg, malloc, realloc) {
         return ptr;
     }
 
-    let len = arg.length;
+    let len = (!arg || typeof arg.length === "undefined") ? 0 : arg.length;
     let ptr = malloc(len, 1) >>> 0;
 
     const mem = getUint8ArrayMemory0();
@@ -534,7 +534,7 @@ module.exports.__wbg_static_accessor_GLOBAL_THIS_1a6eb482d12c9bfb = function() {
 };
 
 module.exports.__wbg_static_accessor_LOCATION_46782728fb36c611 = function() {
-    const ret = window.location;
+    const ret = typeof window !== "undefined" ? window.location : ""; 
     return addHeapObject(ret);
 };
 
