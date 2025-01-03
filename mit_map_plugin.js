@@ -15,10 +15,11 @@ let token = "";
 if (typeof window !== "undefined") {
     // Browser environment
     appid = window.location.hostname;
-} else if (typeof process !== "undefined") {
+} 
+// else if (typeof process !== "undefined") {
     // Node.js environment
-    appid = process.env.APPID || "";
-}
+    // appid = process.env.APPID || "";
+// }
 
 function getUint8Memory0() {
     if (cachedUint8Memory0 === null || cachedUint8Memory0.byteLength === 0) {
