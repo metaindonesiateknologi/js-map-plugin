@@ -1,11 +1,12 @@
 {
   "name": "mit_map_plugin",
   "version": "1.0.0",
+  "description": "MIT Geolocation Plugin",
+  "main": "src/index.js",
+  "browser": "src/index.js",
   "files": [
-    "mit_map_plugin_bg.wasm",
-    "mit_map_plugin.js",
-    "mit_map_plugin.d.ts"
-  ],
-  "main": "mit_map_plugin.js",
-  "types": "mit_map_plugin.d.ts"
+    "pkg-node/*",
+    "pkg-web/*",
+    "src/*"
+  ]
 }
