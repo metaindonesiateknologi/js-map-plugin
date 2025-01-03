@@ -232,7 +232,7 @@ function debugString(val) {
 * @param {string} tokenstr
 * @returns {Promise<any>}
 */
-module.exports.init = function(tokenstr) {
+export function init(tokenstr) {
     token = tokenstr;
 };
 /**

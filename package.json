@@ -2,11 +2,15 @@
   "name": "mit_map_plugin",
   "version": "1.0.0",
   "description": "MIT Geolocation Plugin",
-  "main": "src/index.js",
-  "browser": "src/index.js",
+  "main": "./src/index.cjs", 
+  "exports": {
+    "require": "./src/index.cjs", 
+    "import": "./src/index.mjs"  
+  },
   "files": [
     "pkg-node/*",
     "pkg-web/*",
     "src/*"
-  ]
+  ],
+  "dependencies": {}
 }
