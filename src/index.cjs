@@ -36,7 +36,11 @@ async function get_host() {
     if (!wasm?.get_host) {
         throw new Error("WASM module does not expose an get_host function.");
     }
-    wasm.get_host(token);
+    try {
+        return await wasm.get_host();   
+    } catch (error) {
+        return "";
+    }
 }
 
 // Search address by name

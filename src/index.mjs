@@ -25,7 +25,11 @@ export async function init(token) {
 
 export async function get_host() {
     await ensureWasmInitialized();
-    wasm.get_host();
+    try {
+        return await wasm.get_host();    
+    } catch (error) {
+        return "";
+    }
 }
 
 export async function search_address_by_name(name) {
