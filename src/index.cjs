@@ -30,6 +30,15 @@ async function init(token) {
     wasm.init(token);
 }
 
+// Initialize the WASM module
+async function get_host() {
+    await ensureWasmInitialized();
+    if (!wasm?.get_host) {
+        throw new Error("WASM module does not expose an get_host function.");
+    }
+    wasm.get_host(token);
+}
+
 // Search address by name
 async function search_address_by_name(name) {
     await ensureWasmInitialized();
@@ -72,6 +81,7 @@ async function map_route(start, start_lat, start_lon, dest, dest_lat, dest_lon) 
 // Export functions for CommonJS
 module.exports = {
     init,
+    get_host,
     search_address_by_name,
     search_address_by_coord,
     map_route,
