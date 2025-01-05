@@ -1,60 +1,17 @@
-let wasm;
-let wasmReady = null;
+// loader.js (ESM)
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-if (typeof window === "undefined") {
-    wasm = await import("../pkg-node/mit_map_plugin.js");
-    wasmReady = Promise.resolve(wasm);
-} else {
-    wasmReady = import("../pkg-web/mit_map_plugin.js").then((module) => {
-        wasm = module;
-        return wasm;
-    });
-}
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-async function ensureWasmInitialized() {
-    if (!wasmReady) {
-        throw new Error("WASM module initialization failed.");
-    }
-    await wasmReady;
-}
+export async function mitmap() {
+  const wasmPath = path.join(__dirname, '../mitmap.wasm');
+  const buffer = fs.readFileSync(wasmPath);
 
-export async function init(token) {
-    await ensureWasmInitialized();
-    wasm.init(token);
-}
-
-export async function get_host() {
-    await ensureWasmInitialized();
-    try {
-        return await wasm.get_host();    
-    } catch (error) {
-        return "";
-    }
-}
-
-export async function search_address_by_name(name) {
-    await ensureWasmInitialized();
-    try {
-        return await wasm.search_address_by_name(name);   
-    } catch (error) {
-        return "";
-    }
-}
-
-export async function search_address_by_coord(lat, lon) {
-    await ensureWasmInitialized();
-    try {
-        return await wasm.search_address_by_coord(lat, lon);   
-    } catch (error) {
-        return [];
-    }
-}
-
-export async function map_route(start, start_lat, start_lon, dest, dest_lat, dest_lon) {
-    await ensureWasmInitialized();
-    try {
-        return await wasm.map_route({ start, start_lat, start_lon, dest, dest_lat, dest_lon });   
-    } catch (error) {
-        return [];
-    }
+  const module = await WebAssembly.compile(buffer);
+  const imports = {};
+  const instance = new WebAssembly.Instance(module, imports);
+  return instance.exports;
 }
