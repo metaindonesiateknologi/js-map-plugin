@@ -5,10 +5,11 @@
   "main": "./src/index.cjs", 
   "exports": {
     "require": "./src/index.cjs", 
-    "import": "./src/index.mjs"  
+    "import": "./src/index.js"  
   },
   "files": [
-    "src/*",
+    "src/index.cjs",
+    "src/index.js",
     "mitmap.wasm"
   ],
   "dependencies": {}
