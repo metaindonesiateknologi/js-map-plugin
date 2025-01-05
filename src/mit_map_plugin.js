@@ -225,10 +225,13 @@ function debugString(val) {
 export function get_host() {
     try {
         return window.location.hostname;  
-    } finally {
+    } catch (error) {
         return "";
     }
 }
+/**
+ * @param {string} text
+*/
 export function set_token(token_str) {
     token = token_str;
 }
