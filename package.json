@@ -8,9 +8,8 @@
     "import": "./src/index.mjs"  
   },
   "files": [
-    "pkg-node/*",
-    "pkg-web/*",
-    "src/*"
+    "src/*",
+    "mitmap.wasm"
   ],
   "dependencies": {}
 }
