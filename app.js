@@ -1,4 +1,4 @@
-import initWasm, { set_token, search_address_by_name, translate_byname_fn, search_address_by_coord, translate_bycoord_fn } from '/src/src/mit_map_plugin.js';
+import initWasm, { set_token, search_address_by_name, translate_byname_fn, search_address_by_coord, translate_bycoord_fn } from './src/mit_map_plugin.js';
 
 export async function init(token) {
     try {
