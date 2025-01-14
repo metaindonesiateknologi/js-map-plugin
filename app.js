@@ -12,9 +12,12 @@ export async function init(token) {
 export async function search_location(text) {
     try {
         const url = await search_address_by_name(text);
-        const response = await fetch(url);
+        const response = await fetch(url, {
+            method: 'GET',
+            referrerPolicy: 'no-referrer'
+        });
         const data = await response.text();
-        const listaddress = await translate_byname_fn(data);    
+        const listaddress = translate_byname_fn(data);    
         return listaddress;
     } catch (error) {
         return error;
@@ -25,9 +28,12 @@ export async function search_address(lat, lon) {
     try {
         
         const url = await search_address_by_coord(lat, lon);
-        const response = await fetch(url);
+        const response = await fetch(url, {
+            method: 'GET',
+            referrerPolicy: 'no-referrer'
+        });
         const data = await response.text();
-        const listaddress = await translate_bycoord_fn(data);
+        const listaddress = translate_bycoord_fn(data);
         return listaddress;
     } catch (error) {
         return error;
