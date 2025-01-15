@@ -17,7 +17,8 @@ export async function search_location(text) {
             referrerPolicy: 'no-referrer',
             mode: 'no-cors'
         });
-        const data = await response.text();
+        // const data = await response.text();
+        const data = await response.arrayBuffer();
         const listaddress = translate_byname_fn(data);    
         return listaddress;
     } catch (error) {

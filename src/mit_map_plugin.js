@@ -235,10 +235,11 @@ export function search_address_by_name(text) {
  * @returns {string}
  */
 export function translate_byname_fn(body) {
+    const data = new TextDecoder('utf-8').decode(body);
     let deferred2_0;
     let deferred2_1;
     try {
-        const ptr0 = passStringToWasm0(body, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const ptr0 = passStringToWasm0(data, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
         const ret = wasm.translate_byname_fn(ptr0, len0);
         deferred2_0 = ret[0];
@@ -274,10 +275,11 @@ export function search_address_by_coord(lat_str, lon_str) {
  * @returns {string}
  */
 export function translate_bycoord_fn(body) {
+    const data = new TextDecoder('utf-8').decode(body);
     let deferred2_0;
     let deferred2_1;
     try {
-        const ptr0 = passStringToWasm0(body, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const ptr0 = passStringToWasm0(data, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
         const ret = wasm.translate_bycoord_fn(ptr0, len0);
         deferred2_0 = ret[0];
