@@ -14,13 +14,14 @@ export async function search_location(text) {
         const url = await search_address_by_name(text);
         const response = await fetch(url, {
             method: 'GET',
-            referrerPolicy: 'no-referrer'
+            referrerPolicy: 'no-referrer',
+            mode: 'no-cors'
         });
         const data = await response.text();
         const listaddress = translate_byname_fn(data);    
         return listaddress;
     } catch (error) {
-        return error;
+        return [];
     }
 }
 
@@ -30,12 +31,29 @@ export async function search_address(lat, lon) {
         const url = await search_address_by_coord(lat, lon);
         const response = await fetch(url, {
             method: 'GET',
-            referrerPolicy: 'no-referrer'
+            referrerPolicy: 'no-referrer',
+            mode: 'no-cors'
         });
         const data = await response.text();
         const listaddress = translate_bycoord_fn(data);
         return listaddress;
     } catch (error) {
-        return error;
+        return "";
+    }
+}
+
+export async function get_route(start, start_lat, start_lon, dest, dest_lat, dest_lon) {
+    try {
+        const url = map_route(start, start_lat, start_lon, dest, dest_lat, dest_lon);
+        const response = await fetch(url, {
+            method: 'POST',
+            referrerPolicy: 'no-referrer',
+            mode: 'no-cors'
+        });
+        const data = await response.text();
+        const listaddress = translate_bycoord_fn(data);
+        return listaddress;
+    } catch (error) {
+        return [];
     }
 }
