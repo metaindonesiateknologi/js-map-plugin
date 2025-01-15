@@ -215,8 +215,6 @@ export function set_token(token_str) {
 }
 /**
  * @param {string} text
- * @param {string} lat
- * @param {string} lon
  * @param {string} appid
  * @param {string} token
  * @returns {Promise<any>}
@@ -224,35 +222,12 @@ export function set_token(token_str) {
 export function search_address_by_name(text) {
     const ptr0 = passStringToWasm0(text, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
     const len0 = WASM_VECTOR_LEN;
-    const ptr1 = passStringToWasm0(lat, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const ptr1 = passStringToWasm0("", wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
     const len1 = WASM_VECTOR_LEN;
-    const ptr2 = passStringToWasm0(lon, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const ptr2 = passStringToWasm0(token, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
     const len2 = WASM_VECTOR_LEN;
-    const ptr3 = passStringToWasm0("", wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-    const len3 = WASM_VECTOR_LEN;
-    const ptr4 = passStringToWasm0(token, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-    const len4 = WASM_VECTOR_LEN;
-    const ret = wasm.search_address_by_name(ptr0, len0, ptr1, len1, ptr2, len2, ptr3, len3, ptr4, len4);
+    const ret = wasm.search_address_by_name(ptr0, len0, ptr1, len1, ptr2, len2);
     return ret;
-}
-
-/**
- * @param {string} body
- * @returns {string}
- */
-export function translate_byname_fn(body) {
-    let deferred2_0;
-    let deferred2_1;
-    try {
-        const ptr0 = passStringToWasm0(body, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.translate_byname_fn(ptr0, len0);
-        deferred2_0 = ret[0];
-        deferred2_1 = ret[1];
-        return getStringFromWasm0(ret[0], ret[1]);
-    } finally {
-        wasm.__wbindgen_free(deferred2_0, deferred2_1, 1);
-    }
 }
 
 /**
@@ -273,25 +248,6 @@ export function search_address_by_coord(lat_str, lon_str) {
     const len3 = WASM_VECTOR_LEN;
     const ret = wasm.search_address_by_coord(ptr0, len0, ptr1, len1, ptr2, len2, ptr3, len3);
     return ret;
-}
-
-/**
- * @param {string} body
- * @returns {string}
- */
-export function translate_bycoord_fn(body) {
-    let deferred2_0;
-    let deferred2_1;
-    try {
-        const ptr0 = passStringToWasm0(body, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.translate_bycoord_fn(ptr0, len0);
-        deferred2_0 = ret[0];
-        deferred2_1 = ret[1];
-        return getStringFromWasm0(ret[0], ret[1]);
-    } finally {
-        wasm.__wbindgen_free(deferred2_0, deferred2_1, 1);
-    }
 }
 
 /**
@@ -327,11 +283,11 @@ export function map_route(start, start_lat, start_lon, dest, dest_lat, dest_lon)
 }
 
 function __wbg_adapter_26(arg0, arg1, arg2) {
-    wasm.closure209_externref_shim(arg0, arg1, arg2);
+    wasm.closure210_externref_shim(arg0, arg1, arg2);
 }
 
-function __wbg_adapter_94(arg0, arg1, arg2, arg3) {
-    wasm.closure232_externref_shim(arg0, arg1, arg2, arg3);
+function __wbg_adapter_92(arg0, arg1, arg2, arg3) {
+    wasm.closure233_externref_shim(arg0, arg1, arg2, arg3);
 }
 
 const __wbindgen_enum_RequestCredentials = ["omit", "same-origin", "include"];
@@ -446,7 +402,7 @@ function __wbg_get_imports() {
                 const a = state0.a;
                 state0.a = 0;
                 try {
-                    return __wbg_adapter_94(a, state0.b, arg0, arg1);
+                    return __wbg_adapter_92(a, state0.b, arg0, arg1);
                 } finally {
                     state0.a = a;
                 }
@@ -578,8 +534,8 @@ function __wbg_get_imports() {
         const ret = false;
         return ret;
     };
-    imports.wbg.__wbindgen_closure_wrapper717 = function(arg0, arg1, arg2) {
-        const ret = makeMutClosure(arg0, arg1, 210, __wbg_adapter_26);
+    imports.wbg.__wbindgen_closure_wrapper715 = function(arg0, arg1, arg2) {
+        const ret = makeMutClosure(arg0, arg1, 211, __wbg_adapter_26);
         return ret;
     };
     imports.wbg.__wbindgen_debug_string = function(arg0, arg1) {
