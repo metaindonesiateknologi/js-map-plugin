@@ -17,9 +17,10 @@ export async function search_location(text) {
             referrerPolicy: 'no-referrer',
             mode: 'no-cors'
         });
-        const data = await response.text();
-        const listaddress = translate_byname_fn(data);    
-        return listaddress;
+        const data = await response.json();
+        // const listaddress = translate_byname_fn(data);    
+        // return listaddress;
+        return data;
     } catch (error) {
         return [];
     }
@@ -35,8 +36,9 @@ export async function search_address(lat, lon) {
             mode: 'no-cors'
         });
         const data = await response.text();
-        const listaddress = translate_bycoord_fn(data);
-        return listaddress;
+        // const listaddress = translate_bycoord_fn(data);
+        // return listaddress;
+        return data;
     } catch (error) {
         return "";
     }
@@ -50,9 +52,10 @@ export async function get_route(start, start_lat, start_lon, dest, dest_lat, des
             referrerPolicy: 'no-referrer',
             mode: 'no-cors'
         });
-        const data = await response.text();
-        const listaddress = translate_bycoord_fn(data);
-        return listaddress;
+        const data = await response.json();
+        // const listaddress = translate_bycoord_fn(data);
+        // return listaddress;
+        return data;
     } catch (error) {
         return [];
     }
