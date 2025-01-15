@@ -1,4 +1,4 @@
-import initWasm, { set_token, search_address_by_name, search_address_by_coord } from './src/mit_map_plugin.js';
+import initWasm, { set_token, search_address_by_name, translate_byname_fn, search_address_by_coord, translate_bycoord_fn, map_route } from './src/mit_map_plugin.js';
 
 export async function init(token) {
     try {
@@ -18,9 +18,8 @@ export async function search_location(text) {
             mode: 'no-cors'
         });
         const data = await response.text();
-        // const listaddress = translate_byname_fn(data);    
-        // return listaddress;
-        return data;
+        const listaddress = translate_byname_fn(data);    
+        return listaddress;
     } catch (error) {
         return [];
     }
@@ -36,9 +35,8 @@ export async function search_address(lat, lon) {
             mode: 'no-cors'
         });
         const data = await response.text();
-        // const listaddress = translate_bycoord_fn(data);
-        // return listaddress;
-        return data;
+        const listaddress = translate_bycoord_fn(data);
+        return listaddress;
     } catch (error) {
         return "";
     }
@@ -46,15 +44,7 @@ export async function search_address(lat, lon) {
 
 export async function get_route(start, start_lat, start_lon, dest, dest_lat, dest_lon) {
     try {
-        const url = map_route(start, start_lat, start_lon, dest, dest_lat, dest_lon);
-        const response = await fetch(url, {
-            method: 'POST',
-            referrerPolicy: 'no-referrer',
-            mode: 'no-cors'
-        });
-        const data = await response.text();
-        // const listaddress = translate_bycoord_fn(data);
-        // return listaddress;
+        const data = await map_route(start, start_lat, start_lon, dest, dest_lat, dest_lon);
         return data;
     } catch (error) {
         return [];
