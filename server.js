@@ -1,5 +1,9 @@
 // const fetch = require("node-fetch");
-const { search_address_by_name, search_address_by_coord, map_route } = require("./src/server/mitmap_node_plugin.js");
+const {
+  search_address_by_name,
+  search_address_by_coord,
+  map_route,
+} = require("./src/server/mitmap_node_plugin.js");
 
 /**
  * Framework-agnostic proxy handler
@@ -11,17 +15,17 @@ async function proxyHandler(req) {
   let url = req.url;
   let act = req.query.act;
 
-  if act == "search_byname" {
+  if (act == "search_byname") {
     return await search_byname(req);
-  } else if act == "search_byname" {
+  } else if (act == "search_byname") {
     return await search_byname(req);
-  } else if act == "map_route" {
+  } else if (act == "map_route") {
     return await search_byname(req);
   }
 
   return {
     status: "200",
-    body: "Empty."
+    body: "Empty.",
   };
 }
 
@@ -33,7 +37,7 @@ async function search_byname(req) {
 
     let r = await search_address_by_name(text, url, token);
     return r;
-  } catch(e) {
+  } catch (e) {
     return "[]";
   }
 }
@@ -47,7 +51,7 @@ async function search_bycoord(req) {
 
     let r = await search_address_by_coord(lat, lon, url, token);
     return r;
-  } catch(e) {
+  } catch (e) {
     return "[]";
   }
 }
@@ -63,9 +67,18 @@ async function map_route(req) {
     let token = req.query.token;
     let url = req.url;
 
-    let r = await map_route(start, start_lat, start_lon, dest, dest_lat, dest_lon, token, url);
+    let r = await map_route(
+      start,
+      start_lat,
+      start_lon,
+      dest,
+      dest_lat,
+      dest_lon,
+      token,
+      url,
+    );
     return r;
-  } catch(e) {
+  } catch (e) {
     return "[]";
   }
 }
