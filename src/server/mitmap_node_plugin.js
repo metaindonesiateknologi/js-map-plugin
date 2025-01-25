@@ -219,6 +219,25 @@ module.exports.search_address_by_name = function(text, appid, token) {
 };
 
 /**
+ * @param {string} body
+ * @returns {string}
+ */
+module.exports.translate_byname_fn = function(body) {
+    let deferred2_0;
+    let deferred2_1;
+    try {
+        const ptr0 = passStringToWasm0(body, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.translate_byname_fn(ptr0, len0);
+        deferred2_0 = ret[0];
+        deferred2_1 = ret[1];
+        return getStringFromWasm0(ret[0], ret[1]);
+    } finally {
+        wasm.__wbindgen_free(deferred2_0, deferred2_1, 1);
+    }
+};
+
+/**
  * @param {string} lat_str
  * @param {string} lon_str
  * @param {string} appid
@@ -236,6 +255,25 @@ module.exports.search_address_by_coord = function(lat_str, lon_str, appid, token
     const len3 = WASM_VECTOR_LEN;
     const ret = wasm.search_address_by_coord(ptr0, len0, ptr1, len1, ptr2, len2, ptr3, len3);
     return ret;
+};
+
+/**
+ * @param {string} body
+ * @returns {string}
+ */
+module.exports.translate_bycoord_fn = function(body) {
+    let deferred2_0;
+    let deferred2_1;
+    try {
+        const ptr0 = passStringToWasm0(body, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.translate_bycoord_fn(ptr0, len0);
+        deferred2_0 = ret[0];
+        deferred2_1 = ret[1];
+        return getStringFromWasm0(ret[0], ret[1]);
+    } finally {
+        wasm.__wbindgen_free(deferred2_0, deferred2_1, 1);
+    }
 };
 
 /**
@@ -270,11 +308,30 @@ module.exports.map_route = function(start, start_lat, start_lon, dest, dest_lat,
     return ret;
 };
 
+/**
+ * @param {string} body
+ * @returns {string}
+ */
+module.exports.translate_route_fn = function(body) {
+    let deferred2_0;
+    let deferred2_1;
+    try {
+        const ptr0 = passStringToWasm0(body, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.translate_route_fn(ptr0, len0);
+        deferred2_0 = ret[0];
+        deferred2_1 = ret[1];
+        return getStringFromWasm0(ret[0], ret[1]);
+    } finally {
+        wasm.__wbindgen_free(deferred2_0, deferred2_1, 1);
+    }
+};
+
 function __wbg_adapter_26(arg0, arg1, arg2) {
     wasm.closure101_externref_shim(arg0, arg1, arg2);
 }
 
-function __wbg_adapter_90(arg0, arg1, arg2, arg3) {
+function __wbg_adapter_93(arg0, arg1, arg2, arg3) {
     wasm.closure140_externref_shim(arg0, arg1, arg2, arg3);
 }
 
@@ -363,7 +420,7 @@ module.exports.__wbg_new_23a2665fac83c611 = function(arg0, arg1) {
             const a = state0.a;
             state0.a = 0;
             try {
-                return __wbg_adapter_90(a, state0.b, arg0, arg1);
+                return __wbg_adapter_93(a, state0.b, arg0, arg1);
             } finally {
                 state0.a = a;
             }
@@ -526,7 +583,7 @@ module.exports.__wbindgen_cb_drop = function(arg0) {
     return ret;
 };
 
-module.exports.__wbindgen_closure_wrapper290 = function(arg0, arg1, arg2) {
+module.exports.__wbindgen_closure_wrapper294 = function(arg0, arg1, arg2) {
     const ret = makeMutClosure(arg0, arg1, 102, __wbg_adapter_26);
     return ret;
 };
