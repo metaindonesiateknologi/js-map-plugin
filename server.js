@@ -12,7 +12,6 @@ const {
  * @returns {Promise<Object>} The proxied response.
  */
 async function proxyHandler(req) {
-  let url = req.url;
   let act = req.query.act;
 
   if (act == "search_byname") {
@@ -33,7 +32,7 @@ async function search_byname(req) {
   try {
     let token = req.query.token;
     let text = req.query.text;
-    let url = req.url;
+    let url = req.headers.host || "";
 
     let r = await search_address_by_name(text, url, token);
     return r;
@@ -47,7 +46,7 @@ async function search_bycoord(req) {
     let token = req.query.token;
     let lat = req.query.lat;
     let lon = req.query.lon;
-    let url = req.url;
+    let url = req.headers.host || "";
 
     let r = await search_address_by_coord(lat, lon, url, token);
     return r;
@@ -65,7 +64,7 @@ async function search_route(req) {
     let dest_lat = req.query.dest_lat;
     let dest_lon = req.query.dest_lon;
     let token = req.query.token;
-    let url = req.url;
+    let url = req.headers.host || "";
 
     let r = await map_route(
       start,
