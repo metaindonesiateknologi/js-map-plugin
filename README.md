@@ -16,6 +16,20 @@ in your server side:
 ```sh
 ...
 const { proxyHandler } = require("mit_map_plugin");
+
+...
+// this is for read wasm file in browser
+app.use(
+  "/mit_map_plugin",
+  express.static(path.join(__dirname, "node_modules/mit_map_plugin"), {
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith(".wasm")) {
+        res.setHeader("Content-Type", "application/wasm");
+      }
+    },
+  }),
+);
+
 ...
 // you can change the name of this route, in this example we use '/proxy'
 app.get("/proxy", async (req, res) => {
@@ -63,7 +77,5 @@ in your client side:
     </script>
 </body>
 </html>
-
-
 
 ```
