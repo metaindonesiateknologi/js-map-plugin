@@ -2,9 +2,11 @@
   "name": "mit_map_plugin",
   "version": "1.0.0",
   "description": "MIT Geolocation Plugin",
-  "main": "./app.js",
+  "main": "./index.js",
   "files": [
     "src/*",
-    "app.js"
+    "browser.js",
+    "server.js",
+    "index.js"
   ]
 }
