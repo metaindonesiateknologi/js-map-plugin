@@ -1,5 +1,4 @@
 import initWasm, {
-  set_token,
   search_address_by_name,
   search_address_by_coord,
   map_route,
