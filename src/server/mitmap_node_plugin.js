@@ -271,11 +271,11 @@ module.exports.map_route = function(start, start_lat, start_lon, dest, dest_lat,
 };
 
 function __wbg_adapter_26(arg0, arg1, arg2) {
-    wasm.closure102_externref_shim(arg0, arg1, arg2);
+    wasm.closure121_externref_shim(arg0, arg1, arg2);
 }
 
-function __wbg_adapter_92(arg0, arg1, arg2, arg3) {
-    wasm.closure141_externref_shim(arg0, arg1, arg2, arg3);
+function __wbg_adapter_90(arg0, arg1, arg2, arg3) {
+    wasm.closure160_externref_shim(arg0, arg1, arg2, arg3);
 }
 
 const __wbindgen_enum_RequestCredentials = ["omit", "same-origin", "include"];
@@ -351,10 +351,6 @@ module.exports.__wbg_iterator_9a24c88df860dc65 = function() {
     return ret;
 };
 
-module.exports.__wbg_log_c222819a41e063d3 = function(arg0) {
-    console.log(arg0);
-};
-
 module.exports.__wbg_new_018dcc2d6c8c2f6a = function() { return handleError(function () {
     const ret = new Headers();
     return ret;
@@ -367,7 +363,7 @@ module.exports.__wbg_new_23a2665fac83c611 = function(arg0, arg1) {
             const a = state0.a;
             state0.a = 0;
             try {
-                return __wbg_adapter_92(a, state0.b, arg0, arg1);
+                return __wbg_adapter_90(a, state0.b, arg0, arg1);
             } finally {
                 state0.a = a;
             }
@@ -530,8 +526,8 @@ module.exports.__wbindgen_cb_drop = function(arg0) {
     return ret;
 };
 
-module.exports.__wbindgen_closure_wrapper292 = function(arg0, arg1, arg2) {
-    const ret = makeMutClosure(arg0, arg1, 103, __wbg_adapter_26);
+module.exports.__wbindgen_closure_wrapper312 = function(arg0, arg1, arg2) {
+    const ret = makeMutClosure(arg0, arg1, 122, __wbg_adapter_26);
     return ret;
 };
 
