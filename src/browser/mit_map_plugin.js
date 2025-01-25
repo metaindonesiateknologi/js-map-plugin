@@ -235,12 +235,11 @@ export function get_host() {
 }
 /**
  * @param {string} text
- * @param {string} appid
  * @param {string} token
  * @param {string} proxy
  * @returns {Promise<any>}
  */
-export function search_address_by_name(text, appid, token, proxy) {
+export function search_address_by_name(text, token, proxy) {
   const ptr0 = passStringToWasm0(
     text,
     wasm.__wbindgen_malloc,
@@ -248,51 +247,29 @@ export function search_address_by_name(text, appid, token, proxy) {
   );
   const len0 = WASM_VECTOR_LEN;
   const ptr1 = passStringToWasm0(
-    appid,
+    token,
     wasm.__wbindgen_malloc,
     wasm.__wbindgen_realloc,
   );
   const len1 = WASM_VECTOR_LEN;
   const ptr2 = passStringToWasm0(
-    token,
-    wasm.__wbindgen_malloc,
-    wasm.__wbindgen_realloc,
-  );
-  const len2 = WASM_VECTOR_LEN;
-  const ptr3 = passStringToWasm0(
     proxy,
     wasm.__wbindgen_malloc,
     wasm.__wbindgen_realloc,
   );
-  const len3 = WASM_VECTOR_LEN;
-  const ret = wasm.search_address_by_name(
-    ptr0,
-    len0,
-    ptr1,
-    len1,
-    ptr2,
-    len2,
-    ptr3,
-    len3,
-  );
+  const len2 = WASM_VECTOR_LEN;
+  const ret = wasm.search_address_by_name(ptr0, len0, ptr1, len1, ptr2, len2);
   return ret;
 }
 
 /**
  * @param {string} lat_str
  * @param {string} lon_str
- * @param {string} appid
  * @param {string} token_str
  * @param {string} proxy
  * @returns {Promise<any>}
  */
-export function search_address_by_coord(
-  lat_str,
-  lon_str,
-  appid,
-  token_str,
-  proxy,
-) {
+export function search_address_by_coord(lat_str, lon_str, token_str, proxy) {
   const ptr0 = passStringToWasm0(
     lat_str,
     wasm.__wbindgen_malloc,
@@ -306,23 +283,17 @@ export function search_address_by_coord(
   );
   const len1 = WASM_VECTOR_LEN;
   const ptr2 = passStringToWasm0(
-    appid,
+    token_str,
     wasm.__wbindgen_malloc,
     wasm.__wbindgen_realloc,
   );
   const len2 = WASM_VECTOR_LEN;
   const ptr3 = passStringToWasm0(
-    token_str,
-    wasm.__wbindgen_malloc,
-    wasm.__wbindgen_realloc,
-  );
-  const len3 = WASM_VECTOR_LEN;
-  const ptr4 = passStringToWasm0(
     proxy,
     wasm.__wbindgen_malloc,
     wasm.__wbindgen_realloc,
   );
-  const len4 = WASM_VECTOR_LEN;
+  const len3 = WASM_VECTOR_LEN;
   const ret = wasm.search_address_by_coord(
     ptr0,
     len0,
@@ -332,8 +303,6 @@ export function search_address_by_coord(
     len2,
     ptr3,
     len3,
-    ptr4,
-    len4,
   );
   return ret;
 }
@@ -345,8 +314,8 @@ export function search_address_by_coord(
  * @param {string} dest
  * @param {string} dest_lat
  * @param {string} dest_lon
- * @param {string} appid
  * @param {string} token
+ * @param {string} proxy
  * @returns {Promise<any>}
  */
 export function map_route(
@@ -356,8 +325,8 @@ export function map_route(
   dest,
   dest_lat,
   dest_lon,
-  appid,
   token,
+  proxy,
 ) {
   const ptr0 = passStringToWasm0(
     start,
@@ -396,13 +365,13 @@ export function map_route(
   );
   const len5 = WASM_VECTOR_LEN;
   const ptr6 = passStringToWasm0(
-    appid,
+    token,
     wasm.__wbindgen_malloc,
     wasm.__wbindgen_realloc,
   );
   const len6 = WASM_VECTOR_LEN;
   const ptr7 = passStringToWasm0(
-    token,
+    proxy,
     wasm.__wbindgen_malloc,
     wasm.__wbindgen_realloc,
   );
@@ -429,11 +398,11 @@ export function map_route(
 }
 
 function __wbg_adapter_26(arg0, arg1, arg2) {
-  wasm.closure105_externref_shim(arg0, arg1, arg2);
+  wasm.closure74_externref_shim(arg0, arg1, arg2);
 }
 
-function __wbg_adapter_94(arg0, arg1, arg2, arg3) {
-  wasm.closure153_externref_shim(arg0, arg1, arg2, arg3);
+function __wbg_adapter_92(arg0, arg1, arg2, arg3) {
+  wasm.closure110_externref_shim(arg0, arg1, arg2, arg3);
 }
 
 const __wbindgen_enum_RequestCredentials = ["omit", "same-origin", "include"];
@@ -558,9 +527,6 @@ function __wbg_get_imports() {
     const ret = Symbol.iterator;
     return ret;
   };
-  imports.wbg.__wbg_log_c222819a41e063d3 = function (arg0) {
-    console.log(arg0);
-  };
   imports.wbg.__wbg_new_018dcc2d6c8c2f6a = function () {
     return handleError(function () {
       const ret = new Headers();
@@ -574,7 +540,7 @@ function __wbg_get_imports() {
         const a = state0.a;
         state0.a = 0;
         try {
-          return __wbg_adapter_94(a, state0.b, arg0, arg1);
+          return __wbg_adapter_92(a, state0.b, arg0, arg1);
         } finally {
           state0.a = a;
         }
@@ -724,8 +690,8 @@ function __wbg_get_imports() {
     const ret = false;
     return ret;
   };
-  imports.wbg.__wbindgen_closure_wrapper276 = function (arg0, arg1, arg2) {
-    const ret = makeMutClosure(arg0, arg1, 106, __wbg_adapter_26);
+  imports.wbg.__wbindgen_closure_wrapper197 = function (arg0, arg1, arg2) {
+    const ret = makeMutClosure(arg0, arg1, 75, __wbg_adapter_26);
     return ret;
   };
   imports.wbg.__wbindgen_debug_string = function (arg0, arg1) {

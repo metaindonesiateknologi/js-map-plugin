@@ -2,7 +2,7 @@ import initWasm, {
   search_address_by_name,
   search_address_by_coord,
   map_route,
-} from "./src/mit_map_plugin.js";
+} from "./src/browser/mit_map_plugin.js";
 
 let token = "";
 let proxy = "";
@@ -27,7 +27,7 @@ export async function init(token_str, proxy_str) {
 
 export async function search_location(text) {
   try {
-    const data = await search_address_by_name(text, "", token, proxy);
+    const data = await search_address_by_name(text, token, proxy);
     return data;
   } catch (error) {
     return [];
@@ -36,7 +36,7 @@ export async function search_location(text) {
 
 export async function search_address(lat, lon) {
   try {
-    const data = await search_address_by_coord(lat, lon, "", token, proxy);
+    const data = await search_address_by_coord(lat, lon, token, proxy);
     return data;
   } catch (error) {
     return "";
@@ -59,8 +59,8 @@ export async function get_route(
       dest,
       dest_lat,
       dest_lon,
-      "",
       token,
+      proxy,
     );
     return data;
   } catch (error) {

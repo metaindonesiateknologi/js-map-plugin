@@ -1,4 +1,5 @@
-const fetch = require("node-fetch");
+// const fetch = require("node-fetch");
+const { search_address_by_name, search_address_by_coord, map_route } = require("./src/server/mitmap_node_plugin.js");
 
 /**
  * Framework-agnostic proxy handler
@@ -6,25 +7,66 @@ const fetch = require("node-fetch");
  * @param {string} options.url - The URL to proxy to.
  * @returns {Promise<Object>} The proxied response.
  */
-async function proxyHandler(body) {
-  const { url } = body;
+async function proxyHandler(req) {
+  let url = req.url;
+  let act = req.query.act;
 
-  if (!url) {
-    throw new Error("Missing 'url' in the request body.");
+  if act == "search_byname" {
+    return await search_byname(req);
+  } else if act == "search_byname" {
+    return await search_byname(req);
+  } else if act == "map_route" {
+    return await search_byname(req);
   }
 
-  try {
-    // Fetch the resource from the target URL
-    const response = await fetch(url);
+  return {
+    status: "200",
+    body: "Empty."
+  };
+}
 
-    // Return the response as a JSON-like object
-    return {
-      status: response.status,
-      body: await response.text(),
-    };
-  } catch (error) {
-    console.error("Error in proxying request:", error);
-    throw new Error("Error proxying request.");
+async function search_byname(req) {
+  try {
+    let token = req.query.token;
+    let text = req.query.text;
+    let url = req.url;
+
+    let r = await search_address_by_name(text, url, token);
+    return r;
+  } catch(e) {
+    return "[]";
+  }
+}
+
+async function search_bycoord(req) {
+  try {
+    let token = req.query.token;
+    let lat = req.query.lat;
+    let lon = req.query.lon;
+    let url = req.url;
+
+    let r = await search_address_by_coord(lat, lon, url, token);
+    return r;
+  } catch(e) {
+    return "[]";
+  }
+}
+
+async function map_route(req) {
+  try {
+    let start = req.query.start;
+    let start_lat = req.query.start_lat;
+    let start_lon = req.query.start_lon;
+    let dest = req.query.dest;
+    let dest_lat = req.query.dest_lat;
+    let dest_lon = req.query.dest_lon;
+    let token = req.query.token;
+    let url = req.url;
+
+    let r = await map_route(start, start_lat, start_lon, dest, dest_lat, dest_lon, token, url);
+    return r;
+  } catch(e) {
+    return "[]";
   }
 }
 
