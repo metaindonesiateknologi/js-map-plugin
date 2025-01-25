@@ -20,7 +20,7 @@ async function proxyHandler(req) {
       status: 200,
       body: body,
     };
-  } else if (act == "search_byname") {
+  } else if (act == "search_bycoord") {
     let body = await search_bycoord(req);
     return {
       status: 200,
