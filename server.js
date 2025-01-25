@@ -7,8 +7,10 @@ const fetch = require("node-fetch");
  * @returns {Promise<Object>} The proxied response.
  */
 async function proxyHandler(url) {
+  const { url } = body;
+
   if (!url) {
-    throw new Error("Missing 'url' parameter.");
+    throw new Error("Missing 'url' in the request body.");
   }
 
   try {
@@ -19,7 +21,7 @@ async function proxyHandler(url) {
     return {
       status: response.status,
       headers: response.headers.raw(),
-      body: await response.text(), // Return raw binary data
+      body: await response.buffer(), // Return raw binary data
     };
   } catch (error) {
     console.error("Error in proxying request:", error);
