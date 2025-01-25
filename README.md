@@ -11,91 +11,59 @@ npm install git+https://github.com/metaindonesiateknologi/js-map-plugin.git
 ```
 
 Then, import and use the package as you would with any other Node.js module.
-Example for nodejs apps:
 
-Using CommonJS:
+in your server side:
 ```sh
-
-// Import the plugin
-const mitMapPlugin = require("mit_map_plugin");
-
-(async () => {
-    // Initialize the WASM module
-    mitMapPlugin.init('your-registered-active-token');
-
-    // searching address and the coordinates from string
-    const address_location = await mitMapPlugin.search_address_by_name("tugu jogja");
-    console.log(address_location);
-
-    // searching for address from coordinates
-    const address_name = await mitMapPlugin.search_address_by_coord("-6.3125659999999995", "106.8620154");
-    console.log(address_name);
-})();
+...
+const { proxyHandler } = require("mit_map_plugin");
+...
+// you can change the name of this route, in this example we use '/proxy'
+app.get("/proxy", async (req, res) => {
+  try {
+    const response = await proxyHandler(req);
+    res.send(response.body);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+...
 
 ```
 
-Using ESM:
+in your client side:
 ```sh
 
-// Import the plugin
-import { init, search_address_by_name, search_address_by_coord } from "mit_map_plugin";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+    <h1><%= message %></h1>
 
-(async () => {
-    // Initialize the WASM module
-    init('your-registered-active-token');
+    <h1>Wasm Example</h1>
+    <p id="list-address">Loading...</p>
+    <p id="address">Loading...</p>
 
-    // searching address and the coordinates from string
-    const address_location = await search_address_by_name("tugu jogja");
-    console.log(address_location);
+    <script type="module">
+        import { init, search_location, search_address } from '/mit_map_plugin/browser.js';
 
-    // searching for address from coordinates
-    const address_name = await search_address_by_coord("-6.3125659999999995", "106.8620154");
-    console.log(address_name);
-})();
-
-```
-
-Example for reactjs:
-
-```sh
-
-import React, { useEffect, useState } from "react";
-import { init, search_address_by_name, search_address_by_coord } from "mit_map_plugin";
-
-const App = () => {
-    const [initialized, setInitialized] = useState(false);
-    const [data, setData] = useState(null);
-
-    useEffect(() => {
         (async () => {
-            await init('your-registered-active-token');
-            setInitialized(true);
+            await init('your-registered-token','proxy'); // proxy is route name in server side, you can change it
 
-            const coordResult = await search_address_by_coord(40.7128, -74.0060);
-            console.log("Search by Coordinates:", coordResult);
+            const listaddress = await search_location("tugu jogja");
+            document.getElementById('list-address').textContent = `List Address: ${listaddress}`;
+
+            const address = await search_address("-6.3125659999999995", "106.8620154");
+            document.getElementById('address').textContent = `Address Name: ${address}`;
+
         })();
-    }, []);
+    </script>
+</body>
+</html>
 
-    const get_address = async (search) => {
-        const result = await search_address_by_name(search);
-        setData(result);
-    };
 
-    return (
-        <div>
-            <h1>Search Address</h1>
-            {!initialized ? (
-                <p>Loading...</p>
-            ) : (
-                <div>
-                    <button onClick={() => getAddress('monas')}>Get Address</button>
-                    {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
-                </div>
-            )}
-        </div>
-    );
-};
-
-export default App;
 
 ```
