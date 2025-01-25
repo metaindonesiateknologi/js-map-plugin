@@ -18,9 +18,9 @@ async function proxyHandler(req) {
   if (act == "search_byname") {
     return await search_byname(req);
   } else if (act == "search_byname") {
-    return await search_byname(req);
+    return await search_bycoord(req);
   } else if (act == "map_route") {
-    return await search_byname(req);
+    return await search_route(req);
   }
 
   return {
@@ -56,7 +56,7 @@ async function search_bycoord(req) {
   }
 }
 
-async function map_route(req) {
+async function search_route(req) {
   try {
     let start = req.query.start;
     let start_lat = req.query.start_lat;
