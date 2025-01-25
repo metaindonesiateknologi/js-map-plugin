@@ -1,4 +1,4 @@
-import initWasm, {
+import {
   search_address_by_name,
   search_address_by_coord,
   map_route,
@@ -17,7 +17,6 @@ export function get_host() {
 
 export async function init(token_str, proxy_str) {
   try {
-    await initWasm();
     token = token_str;
     proxy = proxy_str;
   } catch (error) {
