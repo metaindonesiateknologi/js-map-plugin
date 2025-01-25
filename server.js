@@ -15,15 +15,27 @@ async function proxyHandler(req) {
   let act = req.query.act;
 
   if (act == "search_byname") {
-    return await search_byname(req);
+    let body = await search_byname(req);
+    return {
+      status: 200,
+      body: body,
+    };
   } else if (act == "search_byname") {
-    return await search_bycoord(req);
+    let body = await search_bycoord(req);
+    return {
+      status: 200,
+      body: body,
+    };
   } else if (act == "map_route") {
-    return await search_route(req);
+    let body = await search_route(req);
+    return {
+      status: 200,
+      body: body,
+    };
   }
 
   return {
-    status: "200",
+    status: 200,
     body: "Empty.",
   };
 }
