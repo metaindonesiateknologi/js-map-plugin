@@ -6,7 +6,7 @@ const fetch = require("node-fetch");
  * @param {string} options.url - The URL to proxy to.
  * @returns {Promise<Object>} The proxied response.
  */
-async function proxyHandler(url) {
+async function proxyHandler(body) {
   const { url } = body;
 
   if (!url) {
@@ -20,8 +20,7 @@ async function proxyHandler(url) {
     // Return the response as a JSON-like object
     return {
       status: response.status,
-      headers: response.headers.raw(),
-      body: await response.buffer(), // Return raw binary data
+      body: await response.text(),
     };
   } catch (error) {
     console.error("Error in proxying request:", error);
