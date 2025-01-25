@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "MIT Geolocation Plugin",
   "main": "./index.js",
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  },
   "files": [
     "src/*",
     "browser.js",
